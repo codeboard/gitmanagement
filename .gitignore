@@ -5,3 +5,5 @@ composer.lock
 .env.*
 .DS_Store
 Thumbs.db
+
+storage/database.sqlite

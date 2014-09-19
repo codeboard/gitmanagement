@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>@yield('title', 'Git Management Portal')</title>
     <link rel="stylesheet" href="{{ asset('assets/bootstrap-3.2.0-dist/css/bootstrap.min.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('assets/uikit-2.9.0/css/uikit.min.css') }}"/>
 </head>
 <body>
 @if(Auth::check())
