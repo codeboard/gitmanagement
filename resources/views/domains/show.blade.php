@@ -18,6 +18,7 @@
                     </ul>
                     <div class="tab-content">
                         <div class="tab-pane active" id="app">
+                            @if( ! count($domain->app))
                             <div class="page-header">
                                 Install Repository
                             </div>
@@ -27,10 +28,10 @@
                                 <div class="form-control clearfix uk-text-break" style="height: inherit; margin: 10px 0 0">ssh-rsa ADDAB3NzaC1yc2EADDADAQABAAABAQCo1iDFTY/PtSe+TqDIHymCc7uKyM6Iqg6XzSTnz5goTHG1+GL/gHrGT/7EsphNZ3nKZzSd93BAm8z2ihmqxRZRunWAi8cg+ina+QFgEZGI+cXYrzSyax9a+/0g62jZU8KMPTKSh5AhOWi/K3VGkm7XDVGAs54zUtG0VSvnaqPTLAt0Rdcoi5A31ShAO80d/4RqRBa37snSf2arsImBZdcBq8jwKlqsZwV8mdPdRNUBRPOWGlxjCihF8fc3nTacOJVjkUYq8PpQhDycX6dCk5oKGykRva/G0XFoZnuAws54ducIlFVySCjKnx4cCRcmYV+1ToLWGPsp2XouQ2V6K8cj root@domainholder</div>
                                 </div>
                             </div>
-                            {{ Form::open() }}
+                            {{ Form::open(['route' => ['admin.app.store', $domain->id]]) }}
                             <div class="form-group">
-                                {{ Form::label('repository', null, ['class' => 'control-label']) }}
-                                {{ Form::text('repository', null, ['class' => 'form-control', 'placeholder' => 'git@provider:user/repository.git']) }}
+                                {{ Form::label('url', 'Repository', ['class' => 'control-label']) }}
+                                {{ Form::text('url', null, ['class' => 'form-control', 'placeholder' => 'git@provider:user/repository.git']) }}
                             </div>
                             <div class="form-group">
                                 {{ Form::label('branch', null, ['class' => 'control-label']) }}
@@ -40,7 +41,7 @@
                                 {{ Form::label('installation', 'Installation Options', ['class' => 'control-label']) }}
                                 <div class="checkbox">
                                     <label>
-                                        {{ Form::checkbox('install_dependencies', 1, true) }} Install Composer Dependencies
+                                        {{ Form::checkbox('run_composer', 1, true) }} Install Composer Dependencies
                                     </label>
                                 </div>
                                 <div class="checkbox">
@@ -53,7 +54,7 @@
                                 {{ Form::submit('Install Repository', ['class' => 'btn btn-default']) }}
                             </div>
                             {{ Form::close() }}
-
+                            @else
                             <div class="page-header">
                                 Deployment
                             </div>
@@ -68,18 +69,35 @@
                                 Deploy Branch
                             </div>
                             <div class="alert alert-info">
-                                <p>When you push commits to this branch, deploy bransh will deploy your fresh code to your site.</p>
+                                <p>When you push commits to this branch, deploy branch will deploy your fresh code to your site.</p>
                             </div>
+                            {{ Form::open() }}
                             <div class="form-group">
                                 {{ Form::label('Branch', null, ['class' => 'control-label']) }}
                                 {{ Form::text('Branch', 'master', ['class' => 'form-control', 'placeholder' => 'Ex: master']) }}
                             </div>
+                            <div class="form-group">
+                                {{ Form::submit('Update Branch', ['class' => 'btn btn-default']) }}
+                            </div>
+                            {{ Form::close() }}
                             <div class="page-header">
                                 Trigger Deploy URL
                             </div>
                             <div class="alert alert-warning">
                                 <p>http://your.domain.com/sites/deploy/http?token={{ rand(0,1000) }}</p>
                             </div>
+                            <div class="page-header">
+                                Uninstall App
+                            </div>
+                            <div class="form-group">
+                                <div class="checkbox">
+                                    <label>{{ Form::checkbox('rollback_migrations', 1, false) }} Rollback Migrations</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                {{ Form::submit('Uninstall Repository', ['class' => 'btn btn-default btn-danger']) }}
+                            </div>
+                            @endif
                         </div>
                         <div class="tab-pane" id="environment">
                             <div class="page-header">
@@ -142,9 +160,92 @@
                             {{ Form::close() }}
                         </div>
                         <div class="tab-pane" id="subdomain">
-
+                            <div class="page-header">
+                                Add New Sub Domain
+                            </div>
+                            {{ Form::open(['class' => 'form-horizontal']) }}
+                            <div class="form-group">
+                                {{ Form::label('name', null, ['class' => 'control-label col-md-4']) }}
+                                <div class="col-md-4">
+                                {{ Form::text('name', null, ['class' => 'form-control', 'placeholder' => 'example']) }}
+                                </div>
+                                <div class="col-md-4">
+                                    <p class="form-control-static">.{{ $domain->name }}</p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-4 col-md-offset-4">
+                                    {{ Form::submit('Add New Sub Domain', ['class' => 'btn btn-default']) }}
+                                </div>
+                            </div>
+                            {{ Form::close() }}
+                            <div class="page-header">
+                                Sub Domains List
+                            </div>
                         </div>
                         <div class="tab-pane" id="ssl">
+                            <div class="page-header">
+                                New Certificate
+                            </div>
+                            <ul class="nav nav-pills" role="tablist">
+                                <li class="active"><a href="#request" role="tab" data-toggle="tab">Create Signing Request</a></li>
+                                <li><a href="#install" role="tab" data-toggle="tab">Install Existing Certificate</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="request">
+                                    <div class="page-header">
+                                        Create Signing Request
+                                    </div>
+                                    {{ Form::open() }}
+                                    <div class="form-group">
+                                        {{ Form::label('domain', null, ['class' => 'control-label']) }}
+                                        {{ Form::text('domain', null, ['class' => 'form-control', 'placeholder' => 'domain.tld']) }}
+                                    </div>
+                                    <div class="form-group">
+                                        {{ Form::label('country', null, ['class' => 'control-label']) }}
+                                        {{ Form::text('country', null, ['class' => 'form-control', 'placeholder' => 'NL']) }}
+                                    </div>
+                                    <div class="form-group">
+                                        {{ Form::label('State', null, ['class' => 'control-label']) }}
+                                        {{ Form::text('State', null, ['class' => 'form-control', 'placeholder' => 'GR']) }}
+                                    </div>
+                                    <div class="form-group">
+                                        {{ Form::label('city', null, ['class' => 'control-label']) }}
+                                        {{ Form::text('city', null, ['class' => 'form-control', 'placeholder' => 'Groningen']) }}
+                                    </div>
+                                    <div class="form-group">
+                                        {{ Form::label('organization', null, ['class' => 'control-label']) }}
+                                        {{ Form::text('organization', null, ['class' => 'form-control', 'placeholder' => 'Company Name']) }}
+                                    </div>
+                                    <div class="form-group">
+                                        {{ Form::label('department', null, ['class' => 'control-label']) }}
+                                        {{ Form::text('department', null, ['class' => 'form-control', 'placeholder' => 'IT']) }}
+                                    </div>
+                                    <div class="form-group">
+                                        {{ Form::submit('Create Signing Request', ['class' => 'btn btn-default']) }}
+                                    </div>
+                                    {{ Form::close() }}
+                                </div>
+                                <div class="tab-pane" id="install">
+                                    <div class="page-header">
+                                        Install Existing Certificate
+                                    </div>
+                                    {{ Form::open() }}
+                                    <div class="form-group">
+                                        {{ Form::label('private_key', null, ['class' => 'control-label']) }}
+                                        {{ Form::textarea('private_key', null, ['class' => 'form-control', 'placeholder' => '']) }}
+                                    </div>
+                                    <div class="form-group">
+                                        {{ Form::label('certificate', null, ['class' => 'control-label']) }}
+                                        {{ Form::textarea('certificate', null, ['class' => 'form-control', 'placeholder' => '']) }}
+                                    </div>
+                                    <div class="form-group">
+                                        {{ Form::submit('Install Certificate', ['class' => 'btn btn-default']) }}
+                                    </div>
+                                    {{ Form::close() }}
+                                </div>
+                            </div>
+
 
                         </div>
                     </div>

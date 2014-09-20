@@ -29,7 +29,11 @@
                     <td>{{ $domain->present()->name }}</td>
                     <td>/{{ $domain->present()->directory }}</td>
                     <td>{{ $domain->present()->allowWildcards }}</td>
-                    <td></td>
+                    <td>
+                        @if($domain->app)
+                        {{ $domain->app->present()->name }}
+                        @endif
+                    </td>
                     <td></td>
                     <td></td>
                     <td>

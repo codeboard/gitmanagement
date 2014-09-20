@@ -30,4 +30,6 @@ Route::group(['prefix' => 'admin', 'before' => 'auth'], function() {
 
     Route::resource('domains','DomainsController');
     get('domains/{id}/delete', ['as' => 'admin.domains.destroy', 'uses' => 'DomainsController@destroy']);
+
+    post('domains/{id}/app', ['as' => 'admin.app.store', 'uses' => 'AppsController@store']);
 });
