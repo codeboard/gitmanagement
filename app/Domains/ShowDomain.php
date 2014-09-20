@@ -31,8 +31,9 @@ class ShowDomain {
      */
     public function execute($domainId, DomainListener $listener)
     {
-        $this->log->info('Show Domain id' . $domainId);
+
         $domain = $this->repository->getDomainById($domainId);
+        $this->log->info('Show Domain id ' . $domainId, $domain->toArray());
         return $listener->view('domains.show', compact('domain'));
     }
 

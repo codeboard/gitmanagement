@@ -7,6 +7,6 @@ class RepositoryPresenter extends Presenter {
     public function name()
     {
         $name = explode(':',$this->entity->url);
-        return str_replace('.git', '',$name[1]);
+        return '<i class="fa fa-git"></i> '.str_replace('.git', '',$name[1]);
     }
 } 

@@ -11,7 +11,7 @@
             <div class="page-header">
                 <h2>Domains</h2>
             </div>
-            <table class="table">
+            <table class="table table-striped table-hover">
                 <thead>
                 <tr>
                     <th>Domain Name</th>
@@ -32,10 +32,12 @@
                     <td>
                         @if($domain->app)
                         {{ $domain->app->present()->name }}
+                        @else
+                        <span class="glyphicon glyphicon-remove-circle"></span> None
                         @endif
                     </td>
-                    <td></td>
-                    <td></td>
+                    <td>0</td>
+                    <td><i class="fa fa-unlock"></i> Inactive</td>
                     <td>
                         <a href="{{ route('admin.domains.show', $domain->id) }}"><span class="glyphicon glyphicon-pencil"></span></a>
                         <a href="{{ route('admin.domains.destroy', $domain->id) }}" class="pull-right"><span class="glyphicon glyphicon-remove"></span></a>

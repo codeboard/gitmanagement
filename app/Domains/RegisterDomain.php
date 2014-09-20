@@ -37,10 +37,10 @@ class RegisterDomain {
      */
     public function execute($domainData, DomainListener $listener)
     {
-        $this->log->info('Domain Created');
         $user = $this->auth->user();
         $domainData['shortName'] = $domainData['name'];
         $domain = $this->repository->createDomain($user->id, $domainData);
+        $this->log->info('Domain Created', $domain->toArray());
         return $listener->domainRedirect($domain);
     }
 

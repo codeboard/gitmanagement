@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>@yield('title', 'Git Management Portal')</title>
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('assets/bootstrap-3.2.0-dist/css/bootstrap.min.css') }}"/>
     <link rel="stylesheet" href="{{ asset('assets/uikit-2.9.0/css/uikit.min.css') }}"/>
 </head>
