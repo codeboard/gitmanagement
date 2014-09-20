@@ -25,4 +25,9 @@ class Domain extends Model {
         return $this->hasOne('Codeboard\Apps\Repository');
     }
 
+    public function environments()
+    {
+        return $this->hasMany('Codeboard\Environments\Environment');
+    }
+
 }

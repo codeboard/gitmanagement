@@ -18,6 +18,11 @@ class ListOfDomains {
      */
     private $auth;
 
+    /**
+     * @param DomainRepository $repository
+     * @param Authenticator $auth
+     * @param Writer $log
+     */
     function __construct(DomainRepository $repository, Authenticator $auth, Writer $log)
     {
         $this->repository = $repository;
@@ -25,11 +30,15 @@ class ListOfDomains {
         $this->auth = $auth;
     }
 
+    /**
+     * @param DomainListener $listener
+     * @return mixed
+     */
     public function execute(DomainListener $listener)
     {
-        $this->log->info('Show Domains');
         $user = $this->auth->user();
         $domains = $this->repository->listOfDomains($user->id);
+        $this->log->info('Show Domains');
         return $listener->view('domains.index', compact('domains'));
     }
 }
