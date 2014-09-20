@@ -30,4 +30,5 @@ Route::group(['prefix' => 'admin', 'before' => 'auth'], function() {
 
     # Environment Section
     post('domains/{id}/environment', ['as' => 'admin.environment.store', 'uses' => 'EnvironmentsController@store']);
+    get('environment/{id}', ['as' => 'admin.environment.destroy', 'uses' => 'EnvironmentsController@destroy']);
 });

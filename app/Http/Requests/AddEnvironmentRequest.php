@@ -3,7 +3,7 @@
 use Illuminate\Contracts\Auth\Authenticator;
 use Illuminate\Foundation\Http\FormRequest;
 
-class AddEnvironementRequest extends FormRequest {
+class AddEnvironmentRequest extends FormRequest {
 
 	/**
 	 * Get the validation rules that apply to the request.
