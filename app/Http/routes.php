@@ -17,8 +17,6 @@ post('register', ['as' => 'registrations.store', 'uses' => 'RegistrationsControl
 Route::group(['prefix' => 'admin', 'before' => 'auth'], function() {
     # Static Pages
     get('dashboard', ['as' => 'dashboard', 'uses' => 'PagesController@dashboard']);
-    get('settings', ['as' => 'settings', 'uses' => 'PagesController@settings']);
-    post('settings', ['as' => 'settings.save', 'uses' => 'PagesController@enableEnvoy']);
     get('help', ['as' => 'help', 'uses' => 'PagesController@help']);
 
     # Domain Section
@@ -40,4 +38,8 @@ Route::group(['prefix' => 'admin', 'before' => 'auth'], function() {
     # Workers Section
     post('domains/{id}/worker', ['as' => 'admin.workers.store', 'uses' => 'WorkersController@store']);
     get('worker/{id}', ['as' => 'admin.workers.destroy', 'uses' => 'WorkersController@destroy']);
+
+    # Settings Section
+    get('settings', ['as' => 'settings', 'uses' => 'ConfigurationsController@create']);
+    post('settings', ['as' => 'settings.save', 'uses' => 'ConfigurationsController@store']);
 });

@@ -35,19 +35,19 @@
             </div>
             <div class="form-group">
                 {{ Form::label('ssh_key_location', 'SSH Public Key', ['class' => 'control-label']) }}
-                {{ Form::text('ssh_key_location', null, ['class' => 'form-control', 'placeholder' => 'SSH key location, example: /Users/username/.ssh/id_rsa.pub']) }}
+                {{ Form::text('ssh_key_location', Config::get('settings.ssh_key_location'), ['class' => 'form-control', 'placeholder' => 'SSH key location, example: /Users/username/.ssh/id_rsa.pub']) }}
             </div>
             <div class="form-group">
                 {{ Form::label('document_location', 'Default installation folder', ['class' => 'control-label']) }}
-                {{ Form::text('document_location', null, ['class' => 'form-control', 'placeholder' => 'Default installation folder']) }}
+                {{ Form::text('document_location', Config::get('settings.document_location'), ['class' => 'form-control', 'placeholder' => 'Default installation folder']) }}
             </div>
             <div class="form-group">
                 {{ Form::label('nginx_location', 'Nginx Location (Optional)', ['class' => 'control-label']) }}
-                {{ Form::text('nginx_location', null, ['class' => 'form-control', 'placeholder' => 'Nginx Location, default in storage']) }}
+                {{ Form::text('nginx_location', Config::get('settings.nginx_location'), ['class' => 'form-control', 'placeholder' => 'Nginx Location, default in storage']) }}
             </div>
             <div class="form-group">
                 {{ Form::label('supervisord_location', 'Supervisord Location (Optional)', ['class' => 'control-label']) }}
-                {{ Form::text('supervisord_location', null, ['class' => 'form-control', 'placeholder' => 'Supervisord Location, default in storage']) }}
+                {{ Form::text('supervisord_location', Config::get('settings.supervisord_location'), ['class' => 'form-control', 'placeholder' => 'Supervisord Location, default in storage']) }}
             </div>
             <div class="form-group">
                 {{ Form::submit('Install Configuration', ['class' => 'btn btn-default']) }}
