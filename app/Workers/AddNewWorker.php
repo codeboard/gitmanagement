@@ -28,6 +28,8 @@ class AddNewWorker {
     }
 
     /**
+     * Executes the command
+     *
      * @param $domainId
      * @param $workerData
      * @param WorkerListener $listener
@@ -44,6 +46,8 @@ class AddNewWorker {
     }
 
     /**
+     * Stores The SupervisorD configuration
+     *
      * @param $worker
      */
     private function storeSupervisordConfig($worker)
