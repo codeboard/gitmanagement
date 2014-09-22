@@ -34,7 +34,7 @@
     <tr>
         <td>{{ $environment->key }}</td>
         <td>{{ $environment->environment }}</td>
-        <td>delete</td>
+        <td><a href="{{ route('admin.environment.destroy', $environment->id) }}"><span class="glyphicon glyphicon-remove"></span></a></td>
     </tr>
     @empty
     <tr>

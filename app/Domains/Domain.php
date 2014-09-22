@@ -30,4 +30,9 @@ class Domain extends Model {
         return $this->hasMany('Codeboard\Environments\Environment');
     }
 
+    public function workers()
+    {
+        return $this->hasMany('Codeboard\Workers\Worker');
+    }
+
 }

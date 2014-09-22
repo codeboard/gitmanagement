@@ -3,7 +3,7 @@
 use Illuminate\Contracts\Auth\Authenticator;
 use Illuminate\Foundation\Http\FormRequest;
 
-class AddEnvironementRequest extends FormRequest {
+class AddNewWorkerRequest extends FormRequest {
 
 	/**
 	 * Get the validation rules that apply to the request.
@@ -13,15 +13,17 @@ class AddEnvironementRequest extends FormRequest {
 	public function rules()
 	{
 		return [
-			'key' => 'required',
-            'value' => 'required'
+			'connection' => 'required',
+            'queue' => 'required',
+            'maximum_seconds_per_job' => 'required',
+            'rest_when_empty' => 'required'
 		];
 	}
 
     /**
      * Determine if the user is authorized to make this request.
      *
-     * @param \Illuminate\Contracts\Auth\Authenticator $auth
+     * @param Authenticator $auth
      * @return bool
      */
 	public function authorize(Authenticator $auth)

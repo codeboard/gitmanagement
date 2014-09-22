@@ -22,6 +22,7 @@ Route::group(['prefix' => 'admin', 'before' => 'auth'], function() {
     # Domain Section
     Route::resource('domains','DomainsController');
     get('domains/{id}/delete', ['as' => 'admin.domains.destroy', 'uses' => 'DomainsController@destroy']);
+    get('domains/{id}/token', ['as' => 'admin.domains.new_token', 'uses' => 'DomainsController@generateToken']);
 
     # App/Repository Section
     post('domains/{id}/app', ['as' => 'admin.app.store', 'uses' => 'AppsController@store']);
@@ -30,4 +31,9 @@ Route::group(['prefix' => 'admin', 'before' => 'auth'], function() {
 
     # Environment Section
     post('domains/{id}/environment', ['as' => 'admin.environment.store', 'uses' => 'EnvironmentsController@store']);
+    get('environment/{id}', ['as' => 'admin.environment.destroy', 'uses' => 'EnvironmentsController@destroy']);
+
+    # Workers Section
+    post('domains/{id}/worker', ['as' => 'admin.workers.store', 'uses' => 'WorkersController@store']);
+    get('worker/{id}', ['as' => 'admin.workers.destroy', 'uses' => 'WorkersController@destroy']);
 });
