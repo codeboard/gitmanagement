@@ -17,7 +17,7 @@ return [
 	| choice installed on your machine before you begin development.
 	|
 	*/
-    'default' => 'sqlite',
+    'default' => 'mysql',
 
 	'connections' => [
 
@@ -30,12 +30,12 @@ return [
 		'mysql' => [
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
-			'database'  => 'homestead',
-			'username'  => 'homestead',
-			'password'  => 'secret',
+			'database'  => 'gitdb',
+			'username'  => 'root',
+			'password'  => 'root',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
-			'prefix'    => '',
+			'prefix'    => 'git_',
 		],
 
 		'pgsql' => [

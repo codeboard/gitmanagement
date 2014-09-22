@@ -19,7 +19,13 @@ Route::group(['prefix' => 'admin', 'before' => 'auth'], function() {
     get('help', ['as' => 'help', 'uses' => 'PagesController@help']);
 
     # Domain Section
-    Route::resource('domains','DomainsController');
+    get('domains', ['as' => 'admin.domains.index', 'uses' => 'DomainsController@index']);
+    get('domains/create', ['as' => 'admin.domains.create', 'uses' => 'DomainsController@create']);
+    post('domains', ['as' => 'admin.domains.store', 'uses' => 'DomainsController@store']);
+    get('domains/{domain}', ['as' => 'admin.domains.show', 'uses' => 'DomainsController@show']);
+    get('domains/{domain}/edit', ['as' => 'admin.domains.edit', 'uses' => 'DomainsController@edit']);
+    put('domains/{domain}', ['as' => 'admin.domains.update', 'uses' => 'DomainsController@update']);
+    patch('domains/{domain}', 'DomainsController@update');
     get('domains/{id}/delete', ['as' => 'admin.domains.destroy', 'uses' => 'DomainsController@destroy']);
     get('domains/{id}/token', ['as' => 'admin.domains.new_token', 'uses' => 'DomainsController@generateToken']);
     get('domains/{id}/nginx', ['as' => 'admin.domains.nginx', 'uses' => 'DomainsController@showNginx']);
