@@ -3,7 +3,7 @@
 use Illuminate\Contracts\Auth\Authenticator;
 use Illuminate\Foundation\Http\FormRequest;
 
-class AddAppRequest extends FormRequest {
+class updateNginxConfigRequest extends FormRequest {
 
 	/**
 	 * Get the validation rules that apply to the request.
@@ -13,8 +13,7 @@ class AddAppRequest extends FormRequest {
 	public function rules()
 	{
 		return [
-			'repository' => 'required',
-            'branch' => 'required'
+			'nginx' => 'required'
 		];
 	}
 

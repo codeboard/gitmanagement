@@ -17,12 +17,15 @@ post('register', ['as' => 'registrations.store', 'uses' => 'RegistrationsControl
 Route::group(['prefix' => 'admin', 'before' => 'auth'], function() {
     # Static Pages
     get('dashboard', ['as' => 'dashboard', 'uses' => 'PagesController@dashboard']);
+    get('settings', ['as' => 'settings', 'uses' => 'PagesController@settings']);
     get('help', ['as' => 'help', 'uses' => 'PagesController@help']);
 
     # Domain Section
     Route::resource('domains','DomainsController');
     get('domains/{id}/delete', ['as' => 'admin.domains.destroy', 'uses' => 'DomainsController@destroy']);
     get('domains/{id}/token', ['as' => 'admin.domains.new_token', 'uses' => 'DomainsController@generateToken']);
+    get('domains/{id}/nginx', ['as' => 'admin.domains.nginx', 'uses' => 'DomainsController@showNginx']);
+    patch('domains/{id}/nginx', ['as' => 'admin.domains.nginx.update', 'uses' => 'DomainsController@updateNginx']);
 
     # App/Repository Section
     post('domains/{id}/app', ['as' => 'admin.app.store', 'uses' => 'AppsController@store']);
