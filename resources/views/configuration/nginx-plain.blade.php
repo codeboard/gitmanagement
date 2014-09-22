@@ -1,5 +1,5 @@
 server {
-    listen 80 default_server;
+    listen 80 {{ $domain->name }};
     server_name {{ $domain->name }};
     root {{ Config::get('settings.document_location') }}/{{ $domain->name }}/public;
 

@@ -25,11 +25,17 @@ class Domain extends Model {
         return $this->hasOne('Codeboard\Apps\Repository');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function environments()
     {
         return $this->hasMany('Codeboard\Environments\Environment');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function workers()
     {
         return $this->hasMany('Codeboard\Workers\Worker');

@@ -23,6 +23,8 @@ Route::group(['prefix' => 'admin', 'before' => 'auth'], function() {
     Route::resource('domains','DomainsController');
     get('domains/{id}/delete', ['as' => 'admin.domains.destroy', 'uses' => 'DomainsController@destroy']);
     get('domains/{id}/token', ['as' => 'admin.domains.new_token', 'uses' => 'DomainsController@generateToken']);
+    get('domains/{id}/nginx', ['as' => 'admin.domains.nginx', 'uses' => 'DomainsController@showNginx']);
+    patch('domains/{id}/nginx', ['as' => 'admin.domains.nginx.update', 'uses' => 'DomainsController@updateNginx']);
 
     # App/Repository Section
     post('domains/{id}/app', ['as' => 'admin.app.store', 'uses' => 'AppsController@store']);
@@ -36,4 +38,8 @@ Route::group(['prefix' => 'admin', 'before' => 'auth'], function() {
     # Workers Section
     post('domains/{id}/worker', ['as' => 'admin.workers.store', 'uses' => 'WorkersController@store']);
     get('worker/{id}', ['as' => 'admin.workers.destroy', 'uses' => 'WorkersController@destroy']);
+
+    # Settings Section
+    get('settings', ['as' => 'settings', 'uses' => 'ConfigurationsController@create']);
+    post('settings', ['as' => 'settings.save', 'uses' => 'ConfigurationsController@store']);
 });

@@ -15,7 +15,7 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li class="">{{ link_to_route('admin.domains.index', 'Domains') }}</li>
-                <li><a href="#">Settings</a></li>
+                <li>{{ link_to_route('settings', 'Settings') }}</li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li>{{ link_to_route('sessions.destroy', 'Logout') }}</li>

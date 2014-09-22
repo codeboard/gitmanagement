@@ -53,6 +53,9 @@ class ShowDomain {
         return $listener->view('domains.show', compact('domain', 'sshKey'));
     }
 
+    /**
+     * @return string
+     */
     private function getPublicKey()
     {
         if($this->filesystem->exists($this->config->get('settings.ssh_key_location')))

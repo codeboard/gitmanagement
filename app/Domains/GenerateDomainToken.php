@@ -14,12 +14,21 @@ class GenerateDomainToken {
      */
     private $log;
 
+    /**
+     * @param DomainRepository $repository
+     * @param Writer $log
+     */
     function __construct(DomainRepository $repository, Writer $log)
     {
         $this->repository = $repository;
         $this->log = $log;
     }
 
+    /**
+     * @param $domainId
+     * @param DomainListener $listener
+     * @return Redirect
+     */
     public function execute($domainId, DomainListener $listener)
     {
         $domain = $this->repository->newToken($domainId);
