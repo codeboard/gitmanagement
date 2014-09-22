@@ -39,8 +39,8 @@
                     <td>{{ $domain->workers->count() }}</td>
                     <td><i class="fa fa-unlock"></i> Inactive</td>
                     <td>
-                        <a href="{{ route('admin.domains.show', $domain->id) }}"><span class="glyphicon glyphicon-pencil"></span></a>
-                        <a href="{{ route('admin.domains.destroy', $domain->id) }}" class="pull-right"><span class="glyphicon glyphicon-remove"></span></a>
+                        <a href="{{ route('admin.domains.show', [$domain->id]) }}"><span class="glyphicon glyphicon-pencil"></span></a>
+                        <a href="{{ route('admin.domains.destroy', [$domain->id]) }}" class="pull-right"><span class="glyphicon glyphicon-remove"></span></a>
                     </td>
                 </tr>
                 @empty
