@@ -5,7 +5,7 @@
 <div class="alert alert-warning">
     <p>When using Git deployment, you <strong>must</strong> add the following SSH key to your source control provider <strong>before</strong> install the repository:</p>
     <div class="clearfix">
-        <div class="form-control clearfix uk-text-break" style="height: inherit; margin: 10px 0 0">ssh-rsa ADDAB3NzaC1yc2EADDADAQABAAABAQCo1iDFTY/PtSe+TqDIHymCc7uKyM6Iqg6XzSTnz5goTHG1+GL/gHrGT/7EsphNZ3nKZzSd93BAm8z2ihmqxRZRunWAi8cg+ina+QFgEZGI+cXYrzSyax9a+/0g62jZU8KMPTKSh5AhOWi/K3VGkm7XDVGAs54zUtG0VSvnaqPTLAt0Rdcoi5A31ShAO80d/4RqRBa37snSf2arsImBZdcBq8jwKlqsZwV8mdPdRNUBRPOWGlxjCihF8fc3nTacOJVjkUYq8PpQhDycX6dCk5oKGykRva/G0XFoZnuAws54ducIlFVySCjKnx4cCRcmYV+1ToLWGPsp2XouQ2V6K8cj root@domainholder</div>
+        <div class="form-control clearfix uk-text-break" style="height: inherit; margin: 10px 0 0">{{ $sshKey }}</div>
     </div>
 </div>
 {{ Form::open(['route' => ['admin.app.store', $domain->id]]) }}

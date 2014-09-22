@@ -1,4 +1,5 @@
-<?php  namespace Codeboard\Domains; 
+<?php namespace Codeboard\Domains;
+
 use Codeboard\Domains\Repositories\DomainRepository;
 use Illuminate\Contracts\Auth\Authenticator;
 use Illuminate\Log\Writer;

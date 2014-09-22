@@ -7,3 +7,6 @@ composer.lock
 Thumbs.db
 
 storage/database.sqlite
+
+/storage/nginx
+/storage/supervisor
