@@ -48,6 +48,9 @@ class RegisterDomain {
         return $listener->domainRedirect($domain);
     }
 
+    /**
+     * @param $domain
+     */
     private function storeNginxConfig($domain)
     {
         $file = view('configuration.nginx-plain', compact('domain'))->render();
