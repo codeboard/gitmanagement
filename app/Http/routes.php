@@ -4,7 +4,6 @@
 get('/', 'PagesController@defaultPage');
 get('admin', ['as' => 'home', 'uses' => 'PagesController@redirect']);
 
-
 # Login
 get('login', ['as' => 'sessions.create', 'uses' => 'SessionsController@create']);
 post('login', ['as' => 'sessions.store', 'uses' => 'SessionsController@store']);

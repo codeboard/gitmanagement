@@ -138,6 +138,7 @@ return [
          * Extending Providers
          */
         'Illuminate\Html\HtmlServiceProvider',
+        'Illuminate\Remote\RemoteServiceProvider',
         'Way\Generators\GeneratorsServiceProvider',
 
 	],
@@ -200,6 +201,7 @@ return [
 
         'Html'      => 'Illuminate\Html\HtmlFacade',
         'Form'      => 'Illuminate\Html\FormFacade',
+        'Remote'    => 'Illuminate\Remote\RemoteFacade',
 
 	],
 
