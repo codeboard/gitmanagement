@@ -1,9 +1,9 @@
 <?php  namespace Codeboard\Domains; 
 
 use Codeboard\Domains\Repositories\DomainRepository;
-use Illuminate\Contracts\Config\Config;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Log\Writer;
+use Illuminate\Config\Repository as Config;
 
 class ShowDomain {
 
@@ -28,7 +28,7 @@ class ShowDomain {
      * @param DomainRepository $repository
      * @param Writer $log
      * @param \Illuminate\Filesystem\Filesystem $filesystem
-     * @param \Illuminate\Contracts\Config\Config $config
+     * @param \Illuminate\Config\Repository
      */
     function __construct(DomainRepository $repository, Writer $log, Filesystem $filesystem, Config
     $config)
