@@ -1,7 +1,10 @@
-<?php  namespace Codeboard\Domains; 
+<?php namespace Codeboard\Domains;
+
 use Codeboard\Domains\Repositories\DomainRepository;
 use Illuminate\Contracts\Auth\Authenticator;
 use Illuminate\Log\Writer;
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\File;
 
 class RegisterDomain {
 
@@ -40,8 +43,16 @@ class RegisterDomain {
         $user = $this->auth->user();
         $domainData['shortName'] = $domainData['name'];
         $domain = $this->repository->createDomain($user->id, $domainData);
+        $this->storeNginxConfig($domain);
         $this->log->info('Domain Created', $domain->toArray());
         return $listener->domainRedirect($domain);
+    }
+
+    private function storeNginxConfig($domain)
+    {
+        $file = view('configuration.nginx-plain', compact('domain'))->render();
+        File::put(Config::get('settings.nginx_location').'/'.$domain->name, $file);
+        $this->log->info('Nginx Config created');
     }
 
 } 
