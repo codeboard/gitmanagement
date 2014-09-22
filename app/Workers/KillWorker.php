@@ -1,16 +1,15 @@
 <?php  namespace Codeboard\Workers; 
-
 use Codeboard\Workers\Repositories\WorkersRepositoryInterface;
 use Illuminate\Log\Writer;
 
-class AddNewWorker {
+class KillWorker {
 
     /**
      * @var Repositories\WorkersRepositoryInterface
      */
     private $repository;
     /**
-     * @var \Illuminate\Log\Writer
+     * @var Writer
      */
     private $log;
 
@@ -25,17 +24,15 @@ class AddNewWorker {
     }
 
     /**
-     * @param $domainId
-     * @param $workerData
+     * @param $workerId
      * @param WorkerListener $listener
      * @return mixed
      */
-    public function execute($domainId, $workerData, WorkerListener $listener)
+    public function execute($workerId, WorkerListener $listener)
     {
-        if( empty($workerData['environment']))
-            $workerData['environment'] = 'production';
-        $worker = $this->repository->addNewWorker($domainId, $workerData);
-        $this->log->info('Worker Created', $worker->toArray());
+        $worker = $this->repository->killWorker($workerId);
+        $this->log->info('Worker Killed', $worker->toArray());
         return $listener->redirectWorker($worker);
     }
+
 } 

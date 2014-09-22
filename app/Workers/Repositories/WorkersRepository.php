@@ -30,4 +30,14 @@ class WorkersRepository implements WorkersRepositoryInterface
         return $worker;
     }
 
-} 
+    /**
+     * @param $workerId
+     * @return mixed
+     */
+    public function killWorker($workerId)
+    {
+        $worker = Worker::findOrFail($workerId);
+        $worker->delete();
+        return $worker;
+    }
+}

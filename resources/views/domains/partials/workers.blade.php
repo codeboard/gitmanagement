@@ -69,7 +69,7 @@
         <td><span class="fa fa-close"></span></td>
         <td><span class="fa fa-eye"></span></td>
         <td><span class="fa fa-refresh"></span></td>
-        <td><span class="fa fa-close"></span></td>
+        <td><a href="{{ route('admin.workers.destroy', $worker->id) }}"><span class="fa fa-close"></span></a></td>
     </tr>
     @empty
     <tr>

@@ -15,4 +15,10 @@ interface WorkersRepositoryInterface
      * @return \Illuminate\Support\Collection|static
      */
     public function customizeWorker($workerId, $workerData);
+
+    /**
+     * @param $workerId
+     * @return mixed
+     */
+    public function killWorker($workerId);
 }

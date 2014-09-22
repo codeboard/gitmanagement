@@ -35,4 +35,5 @@ Route::group(['prefix' => 'admin', 'before' => 'auth'], function() {
 
     # Workers Section
     post('domains/{id}/worker', ['as' => 'admin.workers.store', 'uses' => 'WorkersController@store']);
+    get('worker/{id}', ['as' => 'admin.workers.destroy', 'uses' => 'WorkersController@destroy']);
 });
