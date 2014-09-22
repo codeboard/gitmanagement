@@ -36,7 +36,7 @@
                         <span class="glyphicon glyphicon-remove-circle"></span> None
                         @endif
                     </td>
-                    <td>0</td>
+                    <td>{{ $domain->workers->count() }}</td>
                     <td><i class="fa fa-unlock"></i> Inactive</td>
                     <td>
                         <a href="{{ route('admin.domains.show', $domain->id) }}"><span class="glyphicon glyphicon-pencil"></span></a>

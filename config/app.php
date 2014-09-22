@@ -105,6 +105,11 @@ return [
 		'Codeboard\Providers\LogServiceProvider',
 		'Codeboard\Providers\RouteServiceProvider',
 
+        /*
+         * App specific Providers
+         */
+        'Codeboard\Workers\Providers\WorkersProvider',
+
 		/*
 		 * Laravel Framework Service Providers...
 		 */

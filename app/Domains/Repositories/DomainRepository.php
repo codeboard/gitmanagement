@@ -15,6 +15,7 @@ class DomainRepository implements DomainRepositoryInterface
     {
         $user = User::findOrFail($userId);
         $domain = $user->domains()->create($domainData);
+        $this->newToken($domain->id);
         return $domain;
     }
 
@@ -24,7 +25,7 @@ class DomainRepository implements DomainRepositoryInterface
      */
     public function deleteDomain($domainId)
     {
-        $domain = Domain::findOrFail($domainId);
+        $domain = $this->getDomainById($domainId);
         $domain->delete();
         return $domain;
     }
@@ -35,7 +36,7 @@ class DomainRepository implements DomainRepositoryInterface
      */
     public function listOfDomains($userId)
     {
-        $user = User::findOrFail($userId);
+        $user = User::with('domains.workers')->findOrFail($userId);
         return $user->domains;
     }
 
@@ -48,4 +49,15 @@ class DomainRepository implements DomainRepositoryInterface
         return Domain::findOrFail($domainId);
     }
 
-} 
+    /**
+     * @param $domainId
+     * @return mixed
+     */
+    public function newToken($domainId)
+    {
+        $domain = $this->getDomainById($domainId);
+        $domain->token = str_random(72);
+        $domain->save();
+        return $domain;
+    }
+}

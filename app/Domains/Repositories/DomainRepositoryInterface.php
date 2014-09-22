@@ -33,4 +33,10 @@ interface DomainRepositoryInterface
      * @return \Illuminate\Support\Collection|static
      */
     public function getDomainById($domainId);
+
+    /**
+     * @param $domainId
+     * @return mixed
+     */
+    public function newToken($domainId);
 }

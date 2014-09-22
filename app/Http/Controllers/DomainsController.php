@@ -3,6 +3,7 @@
 use Codeboard\Domains\DestroyDomain;
 use Codeboard\Domains\DomainListener;
 use Codeboard\Domains\DomainTrait;
+use Codeboard\Domains\GenerateDomainToken;
 use Codeboard\Domains\ListOfDomains;
 use Codeboard\Domains\Redirect;
 use Codeboard\Domains\RegisterDomain;
@@ -70,4 +71,9 @@ class DomainsController extends Controller implements DomainListener {
 	{
 		return $domain->execute($id, $this);
 	}
+
+    public function generateToken($domainId, GenerateDomainToken $token)
+    {
+        return $token->execute($domainId, $this);
+    }
 }
