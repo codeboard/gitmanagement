@@ -3,13 +3,14 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-12">
             <div class="page-header">
                 <h2>Configuration</h2>
             </div>
             <div class="alert alert-info">
                 <p>Before you want to auto deploy your website you need to configure GMP. Once this is done you will be able to deploy every GIT project you can get.</p>
             </div>
+            {{ Form::open(['route' => 'settings.save']) }}
             <div class="form-group">
                 {{ Form::label('server_name', null, ['class' => 'control-label']) }}
                 {{ Form::text('server_name', null, ['class' => 'form-control', 'placeholder' => 'Server Name']) }}
@@ -51,8 +52,9 @@
             <div class="form-group">
                 {{ Form::submit('Install Configuration', ['class' => 'btn btn-default']) }}
             </div>
+            {{ Form::close() }}
         </div>
-        <div class="col-md-6">
+        <div class="col-md-12">
             <div class="page-header">
                 <h2>Settings</h2>
             </div>

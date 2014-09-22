@@ -18,6 +18,7 @@ Route::group(['prefix' => 'admin', 'before' => 'auth'], function() {
     # Static Pages
     get('dashboard', ['as' => 'dashboard', 'uses' => 'PagesController@dashboard']);
     get('settings', ['as' => 'settings', 'uses' => 'PagesController@settings']);
+    post('settings', ['as' => 'settings.save', 'uses' => 'PagesController@enableEnvoy']);
     get('help', ['as' => 'help', 'uses' => 'PagesController@help']);
 
     # Domain Section

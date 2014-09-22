@@ -2,6 +2,8 @@
 
 use Illuminate\Contracts\Auth\Authenticator;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Input;
 
 class PagesController extends Controller {
 
@@ -38,6 +40,14 @@ class PagesController extends Controller {
     public function settings()
     {
         return view('pages.settings');
+    }
+
+    public function enableEnvoy()
+    {
+        $inputData = Input::all();
+        $data = view('configuration.envoy', $inputData)->render();
+        File::put(base_path().'/Envoy.blade.php', $data);
+        return redirect()->route('settings');
     }
 
 }
