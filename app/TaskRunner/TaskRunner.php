@@ -19,7 +19,8 @@ class TaskRunner {
 
     function updateCommand($git, $branch, $location, $domainId)
     {
-        return Remote::run(['cd '.base_path().'; ~/.composer/vendor/bin/envoy run install --git=git@github.com:codeboard/gitmanagement.git --branch=master --location=laravel'], function($line) {
+        return Remote::run(['cd '.base_path().'; ~/.composer/vendor/bin/envoy run update --git='.$git.' --branch='.$branch.' --location='.$location], function($line) {
+            Log::info($line);
             echo $line.'<br />';
         });
     }
