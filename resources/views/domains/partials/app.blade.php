@@ -66,7 +66,7 @@
 <div class="alert alert-warning">
     <p>http://your.domain.com/sites/deploy/http?token={{ $domain->token }}</p>
 </div>
-<a href="{{ route('admin.domains.new_token', $domain->id) }}" class="btn btn-warning">Generate new token</a>
+<a href="{{ route('admin.domains.new_token', [$domain->id]) }}" class="btn btn-warning">Generate new token</a>
 <div class="page-header">
     Uninstall App
 </div>
